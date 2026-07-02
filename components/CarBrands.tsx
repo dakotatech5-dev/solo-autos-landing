@@ -33,7 +33,7 @@ export function CarBrands() {
             </h2>
             <p className="mt-4 leading-8 text-graphite">
               Evaluamos modelos comerciales, fáciles de revisar y con demanda
-              activa en Bogotá y alrededores.
+              activa en Colombia, especialmente en Bogotá y alrededores.
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
