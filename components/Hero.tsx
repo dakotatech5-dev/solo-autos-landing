@@ -42,7 +42,7 @@ export function Hero() {
 
         <div className="pb-10 lg:pb-0">
           <div className="overflow-hidden rounded-lg border border-white/12 bg-white/[0.06] shadow-2xl backdrop-blur">
-            <div className="relative aspect-[4/3]">
+            <div className="relative aspect-[16/10]">
               <Image
                 src="/images/solo-autos-hero.png"
                 alt="Carro usado particular en Colombia para venta a Solo Autos"
@@ -51,27 +51,24 @@ export function Hero() {
                 sizes="(min-width: 1024px) 46vw, 90vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/86 via-ink/18 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
-                <p className="text-sm uppercase tracking-[0.16em] text-white/70">
-                  Bogotá, Colombia
-                </p>
-                <p className="mt-2 text-3xl font-semibold">Oferta seria</p>
-                <div className="mt-5 rounded-md bg-ink/82 p-4 text-sm text-white shadow-soft ring-1 ring-white/14">
-                  <div className="grid gap-3">
-                    <div className="flex items-center justify-between gap-4 border-b border-white/12 pb-3">
-                      <span className="text-white/74">Documentos</span>
-                      <span className="font-semibold text-white">Verificados</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-4 border-b border-white/12 pb-3">
-                      <span className="text-white/74">Inspección</span>
-                      <span className="font-semibold text-white">Agendada</span>
-                    </div>
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-white/74">Cierre</span>
-                      <span className="font-semibold text-white">Formal</span>
-                    </div>
-                  </div>
+            </div>
+            <div className="bg-ink p-5 sm:p-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.16em] text-accent">
+                Bogotá, Colombia
+              </p>
+              <p className="mt-2 text-3xl font-semibold text-white">Oferta seria</p>
+              <div className="mt-5 grid gap-3 text-sm text-white sm:grid-cols-3">
+                <div className="rounded-md border border-white/12 bg-white/[0.06] p-4">
+                  <span className="block text-white/62">Documentos</span>
+                  <span className="mt-1 block font-semibold text-white">Verificados</span>
+                </div>
+                <div className="rounded-md border border-white/12 bg-white/[0.06] p-4">
+                  <span className="block text-white/62">Inspección</span>
+                  <span className="mt-1 block font-semibold text-white">Agendada</span>
+                </div>
+                <div className="rounded-md border border-white/12 bg-white/[0.06] p-4">
+                  <span className="block text-white/62">Cierre</span>
+                  <span className="mt-1 block font-semibold text-white">Formal</span>
                 </div>
               </div>
             </div>
