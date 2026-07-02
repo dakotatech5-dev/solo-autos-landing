@@ -40,6 +40,9 @@ export function Footer() {
         </div>
       </div>
       <div className="mx-auto mt-8 max-w-7xl border-t border-white/12 pt-5 text-sm text-white/58">
+        <p className="mb-2 font-semibold text-white/76">
+          Dakota Tech SAS · NIT 901278869
+        </p>
         <p>Aviso de tratamiento de datos personales</p>
       </div>
     </footer>
