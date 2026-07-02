@@ -2,6 +2,9 @@
 
 import { FormEvent, useState } from "react";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { siteConfig } from "@/components/SiteConfig";
+
+const formEndpoint = `https://formsubmit.co/ajax/${siteConfig.email}`;
 
 const requiredTextFields = [
   { id: "name", label: "Nombre completo", type: "text" },
@@ -86,16 +89,42 @@ function SelectField({
 
 export function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
+    setIsSending(true);
+    setSendError(false);
 
-    // Futura integración: enviar `payload` a Google Sheets, Airtable, Supabase o un backend propio.
-    console.info("Solo Autos lead", payload);
-    setSubmitted(true);
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.append("_subject", "Nuevo lead Solo Autos");
+    formData.append("_template", "table");
+    formData.append("_captcha", "false");
+
+    try {
+      // Futura integración alternativa: reemplazar este endpoint por Google Sheets,
+      // Airtable, Supabase o un backend propio cuando la operación lo necesite.
+      const response = await fetch(formEndpoint, {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo enviar el formulario");
+      }
+
+      setSubmitted(true);
+      form.reset();
+    } catch {
+      setSendError(true);
+    } finally {
+      setIsSending(false);
+    }
   }
 
   return (
@@ -125,6 +154,15 @@ export function LeadForm() {
                   los datos y te contactaremos por WhatsApp.
                 </p>
               </div>
+            </div>
+          ) : null}
+          {sendError ? (
+            <div
+              className="mt-6 rounded-lg border border-red-200 bg-red-50 p-4 text-red-900"
+              role="alert"
+            >
+              No pudimos enviar la información. Intenta de nuevo o escríbenos
+              por WhatsApp.
             </div>
           ) : null}
         </div>
@@ -193,9 +231,10 @@ export function LeadForm() {
           </div>
           <button
             type="submit"
+            disabled={isSending}
             className="mt-6 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md bg-accent px-6 py-3 font-semibold text-white transition hover:bg-[#D83F22] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 sm:w-auto"
           >
-            Enviar información
+            {isSending ? "Enviando..." : "Enviar información"}
             <ArrowRight className="h-5 w-5" aria-hidden="true" />
           </button>
         </form>
