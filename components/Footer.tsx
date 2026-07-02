@@ -1,4 +1,4 @@
-import { Mail, MapPin, MessageCircle } from "lucide-react";
+import { Building2, Mail, MapPin, MessageCircle } from "lucide-react";
 import { siteConfig, whatsappUrl } from "@/components/SiteConfig";
 
 export function Footer() {
@@ -12,10 +12,14 @@ export function Footer() {
             posible compra del vehículo.
           </p>
         </div>
-        <div className="grid gap-4 text-white/76 sm:grid-cols-3">
+        <div className="grid gap-4 text-white/76 sm:grid-cols-2 lg:grid-cols-4">
           <div className="flex gap-3">
             <MapPin className="mt-1 h-5 w-5 text-accent" aria-hidden="true" />
             <span>{siteConfig.city}</span>
+          </div>
+          <div className="flex gap-3">
+            <Building2 className="mt-1 h-5 w-5 text-accent" aria-hidden="true" />
+            <span>{siteConfig.address}</span>
           </div>
           <a
             href={whatsappUrl}
@@ -24,7 +28,7 @@ export function Footer() {
             className="flex gap-3 transition hover:text-white"
           >
             <MessageCircle className="mt-1 h-5 w-5 text-accent" aria-hidden="true" />
-            <span>WhatsApp</span>
+            <span>WhatsApp {siteConfig.whatsappDisplay}</span>
           </a>
           <a
             href={`mailto:${siteConfig.email}`}
